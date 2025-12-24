@@ -70,6 +70,8 @@ body {
     border-radius: 12px;
     width: 44px;
     height: 44px;
+    min-width: 44px; /* Ensure minimum touch target size */
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,6 +79,8 @@ body {
     transition: var(--transition);
     color: var(--text-primary);
     box-shadow: var(--shadow);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .control-btn:hover {
@@ -168,12 +172,16 @@ body {
     border: none;
     cursor: pointer;
     padding: 8px;
+    min-width: 44px; /* Ensure minimum touch target size */
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     color: var(--text-secondary);
     border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .action-btn:hover {
@@ -191,12 +199,16 @@ body {
     border: none;
     cursor: pointer;
     padding: 8px;
+    min-width: 44px; /* Ensure minimum touch target size */
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     color: var(--text-secondary);
     border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .favorite-btn:hover {
@@ -439,10 +451,13 @@ body {
     flex: 1;
     border: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
     font-family: inherit;
     color: var(--text-primary);
     outline: none;
+    -webkit-appearance: none; /* Remove iOS input styling */
+    appearance: none;
+    min-width: 0; /* Prevents flex item overflow */
 }
 
 #searchInput::placeholder {
@@ -455,6 +470,7 @@ body {
     border-radius: 12px;
     width: 44px;
     height: 44px;
+    min-width: 44px; /* Ensure minimum touch target size */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,6 +478,8 @@ body {
     transition: var(--transition);
     color: white;
     margin-left: 10px;
+    -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
+    touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 #searchBtn:hover {
@@ -481,6 +499,7 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--border-radius);
     padding: 14px 20px;
+    min-height: 44px; /* Ensure minimum touch target size */
     font-size: 15px;
     font-weight: 500;
     color: white;
@@ -491,6 +510,8 @@ body {
     gap: 10px;
     transition: var(--transition);
     font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .location-btn:hover {
@@ -1062,6 +1083,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
     .temperature {
         font-size: 56px;
     }
@@ -1072,5 +1097,169 @@ body {
 
     .detail-item {
         padding: 15px;
+    }
+
+    /* Mobile search improvements */
+    .search-container {
+        padding: 12px 15px;
+    }
+
+    #searchInput {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+
+    #searchBtn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px; /* Ensure minimum touch target */
+    }
+
+    /* Mobile location button */
+    .location-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    /* Mobile autocomplete */
+    .autocomplete-dropdown {
+        max-height: 250px;
+        font-size: 14px;
+    }
+
+    .autocomplete-item {
+        padding: 12px 15px;
+    }
+
+    /* Mobile hourly forecast */
+    .hourly-item {
+        min-width: 85px;
+        padding: 15px 10px;
+    }
+
+    .hourly-time {
+        font-size: 12px;
+    }
+
+    .hourly-temp {
+        font-size: 16px;
+    }
+
+    /* Mobile daily forecast */
+    .daily-item {
+        padding: 15px;
+    }
+
+    .daily-day {
+        font-size: 16px;
+        min-width: 100px;
+    }
+
+    .daily-icon {
+        font-size: 28px !important;
+        width: 40px;
+        height: 40px;
+    }
+
+    .daily-desc {
+        font-size: 13px;
+        min-width: 80px;
+    }
+
+    .daily-high,
+    .daily-low {
+        font-size: 16px;
+    }
+
+    /* Mobile current weather card */
+    .current-weather {
+        padding: 25px 15px;
+    }
+
+    .city-name {
+        font-size: 24px;
+    }
+
+    .weather-icon {
+        font-size: 100px !important;
+    }
+
+    .weather-description {
+        font-size: 18px;
+    }
+
+    /* Mobile sections */
+    .hourly-forecast,
+    .daily-forecast {
+        padding: 20px 15px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    /* Mobile alerts */
+    .weather-alerts {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .weather-alert-item {
+        padding: 12px;
+    }
+
+    .weather-alert-title {
+        font-size: 16px;
+    }
+
+    .weather-alert-description {
+        font-size: 13px;
+    }
+
+    /* Mobile activity suggestions */
+    .activity-suggestions {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .activity-item {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    /* Mobile header controls */
+    .header-controls {
+        margin-bottom: 15px;
+    }
+
+    .control-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .favorite-item {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    /* Mobile sunrise/sunset */
+    .sunrise-sunset {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+        font-size: 14px;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        overflow-x: hidden;
+    }
+
+    /* Mobile ad containers */
+    .ad-container {
+        margin: 20px 0;
     }
 }
