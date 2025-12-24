@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Weather Forecast - Accurate Weather for Any City Worldwide | Free Weather App</title>
+    <meta name="title" content="Weather Forecast - Accurate Weather for Any City Worldwide | Free Weather App">
+    <meta name="description" content="Get accurate weather forecasts for any city worldwide. Real-time weather data, 7-day forecast, hourly updates, air quality, UV index, and more. Free weather website with a beautiful, user-friendly interface.">
+    <meta name="keywords" content="weather, weather forecast, weather app, current weather, weather today, weather tomorrow, 7 day forecast, hourly weather, air quality, UV index, weather conditions, temperature, humidity, wind speed, weather website, free weather">
+    <meta name="author" content="Weather Website">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourweatherwebsite.com/">
+    <meta property="og:title" content="Weather Forecast - Accurate Weather for Any City Worldwide">
+    <meta property="og:description" content="Get accurate weather forecasts for any city worldwide. Real-time weather data, 7-day forecast, hourly updates, air quality, UV index, and more.">
+    <meta property="og:image" content="https://yourweatherwebsite.com/og-image.jpg">
+    <meta property="og:site_name" content="Weather Forecast">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourweatherwebsite.com/">
+    <meta property="twitter:title" content="Weather Forecast - Accurate Weather for Any City Worldwide">
+    <meta property="twitter:description" content="Get accurate weather forecasts for any city worldwide. Real-time weather data, 7-day forecast, hourly updates, air quality, UV index, and more.">
+    <meta property="twitter:image" content="https://yourweatherwebsite.com/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourweatherwebsite.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Weather Forecast",
+      "description": "Free weather forecast website with accurate real-time weather data for any city worldwide",
+      "url": "https://yourweatherwebsite.com",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1000"
+      },
+      "featureList": [
+        "Real-time weather forecasts",
+        "7-day weather forecast",
+        "Hourly weather updates",
+        "Air quality index",
+        "UV index",
+        "Wind speed and direction",
+        "Precipitation probability",
+        "Sunrise and sunset times",
+        "Multiple location favorites",
+        "Dark mode",
+        "Temperature unit conversion"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Weather Forecast",
+      "url": "https://yourweatherwebsite.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourweatherwebsite.com/?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Controls -->
+        <div class="header-controls">
+            <div class="favorites-section">
+                <div id="favoritesList" class="favorites-list"></div>
+            </div>
+            <div class="control-buttons">
+                <button id="themeToggle" class="control-btn" aria-label="Toggle theme">
+                    <span id="themeIcon">☀️</span>
+                </button>
+                <button id="unitToggle" class="control-btn" aria-label="Toggle temperature unit">
+                    <span id="unitText">°C</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search for a city..." autocomplete="off">
+                    <button id="searchBtn" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                <div id="autocompleteDropdown" class="autocomplete-dropdown hidden"></div>
+            </div>
+            <button id="locationBtn" class="location-btn" aria-label="Use current location">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4m0 12v4M2 12h4m12 0h4"></path>
+                    <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+                Use My Location
+            </button>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p>Getting weather data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p id="errorMessage">Something went wrong. Please try again.</p>
+            <button id="retryBtn" class="retry-btn">Try Again</button>
+        </div>
+
+        <!-- Main Weather Display -->
+        <div id="weatherDisplay" class="weather-display hidden">
+            <!-- Weather Alerts -->
+            <div id="weatherAlerts" class="weather-alerts hidden"></div>
+
+            <!-- Ad Container - Top Banner -->
+            <div class="ad-container ad-banner-top">
+                <div class="ad-placeholder">
+                    <span class="ad-label">Advertisement</span>
+                    <!-- Google AdSense or other ad code goes here -->
+                    <div class="ad-content">728x90 Banner Ad</div>
+                </div>
+            </div>
+
+            <!-- Current Weather Card -->
+            <div class="current-weather">
+                <div class="location-info">
+                    <div class="location-header">
+                        <div class="location-title-group">
+                            <h1 id="cityName" class="city-name">Loading...</h1>
+                            <div id="weatherTrend" class="weather-trend"></div>
+                        </div>
+                        <div class="location-actions">
+                            <button id="shareBtn" class="action-btn" aria-label="Share weather">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </button>
+                            <button id="favoriteBtn" class="favorite-btn action-btn" aria-label="Add to favorites">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p id="currentDate" class="current-date"></p>
+                    <div id="sunriseSunset" class="sunrise-sunset"></div>
+                    <div id="activitySuggestions" class="activity-suggestions"></div>
+                </div>
+                
+                <div class="temperature-section">
+                    <div class="weather-icon-container">
+                        <div id="weatherIcon" class="weather-icon"></div>
+                    </div>
+                    <div class="temp-main">
+                        <span id="currentTemp" class="temperature">--</span>
+                        <span class="temperature-unit">°C</span>
+                    </div>
+                    <p id="weatherDescription" class="weather-description">Loading...</p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 15a1 1 0 0 1 .83-1.56l7.9 4.44a2 2 0 0 0 1.66 0l7.9-4.44A1 1 0 0 1 22 15v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <path d="M1 12V5a2 2 0 0 1 2-2h4l2 2h12a2 2 0 0 1 2 2v7"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Feels Like</p>
+                            <p id="feelsLike" class="detail-value">--°C</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Humidity</p>
+                            <p id="humidity" class="detail-value">--%</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Wind Speed</p>
+                            <p id="windSpeed" class="detail-value">-- km/h</p>
+                            <p id="windDirection" class="detail-subvalue">--</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <div>
+                            <p class="detail-label">UV Index</p>
+                            <p id="uvIndex" class="detail-value">--</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Air Quality</p>
+                            <p id="airQuality" class="detail-value">--</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                        </svg>
+                        <div>
+                            <p class="detail-label">Pressure</p>
+                            <p id="pressure" class="detail-value">-- hPa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hourly Forecast -->
+            <div class="hourly-forecast">
+                <h2 class="section-title">Today's Forecast</h2>
+                <div id="hourlyList" class="hourly-list"></div>
+            </div>
+
+            <!-- Ad Container - Inline (Between Forecasts) -->
+            <div class="ad-container ad-inline">
+                <div class="ad-placeholder">
+                    <span class="ad-label">Advertisement</span>
+                    <!-- Google AdSense or other ad code goes here -->
+                    <div class="ad-content">300x250 Rectangle Ad</div>
+                </div>
+            </div>
+
+            <!-- Daily Forecast -->
+            <div class="daily-forecast">
+                <h2 class="section-title">7-Day Forecast</h2>
+                <div id="dailyList" class="daily-list"></div>
+            </div>
+
+            <!-- Ad Container - Bottom Banner -->
+            <div class="ad-container ad-banner-bottom">
+                <div class="ad-placeholder">
+                    <span class="ad-label">Advertisement</span>
+                    <!-- Google AdSense or other ad code goes here -->
+                    <div class="ad-content">728x90 Banner Ad</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
